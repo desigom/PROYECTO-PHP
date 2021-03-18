@@ -11,17 +11,17 @@ if(isset($_POST['update'])) {
 	$email = mysqli_real_escape_string($mysqli, $_POST['email']);
 
 	// checking empty fields
-	if(empty($name) || empty($apellido1)|| empty($apellido2) || empty($age) || empty($email)) {
+	if(empty($name) || empty($apellido1) || empty($apellido2) || empty($age) || empty($email)) {
 		if(empty($name)) {
 			echo "<font color='red'>Name field is empty.</font><br/>";
 		}
 
 		if(empty($apellido1)) {
-			echo "<font color='red'>Name field is empty.</font><br/>";
+			echo "<font color='red'>Apellido1 field is empty.</font><br/>";
 		}
 
 		if(empty($apellido2)) {
-			echo "<font color='red'>Name field is empty.</font><br/>";
+			echo "<font color='red'>Apellido2 field is empty.</font><br/>";
 		}
 
 		if(empty($age)) {
@@ -33,7 +33,7 @@ if(isset($_POST['update'])) {
 		}
 	} else {
 		// updating the table
-		$stmt = mysqli_prepare($mysqli, "UPDATE users SET name=?,apellido1=?,apellido2=?,age=?,email=? WHERE id=?");
+		$stmt = mysqli_prepare($mysqli, "UPDATE users SET name=?, apellido1=?, apellido2=?, age=?, email=? WHERE id=?");
 		mysqli_stmt_bind_param($stmt, "sssisi", $name, $apellido1, $apellido2, $age, $email, $id);
 		mysqli_stmt_execute($stmt);
 		mysqli_stmt_free_result($stmt);
